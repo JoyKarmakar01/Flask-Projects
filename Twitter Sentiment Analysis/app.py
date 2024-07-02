@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 import mysql.connector
-from sentiments import second
+from sentiment import second
 import os
 
 
@@ -15,7 +15,7 @@ app.register_blueprint(second)
 # establishing a connection with mysql database made in xampp
 try:
 	conn = mysql.connector.connect(
-		host="localhost", user="root", password="", database="users")
+		host="localhost", user="root", password="", database="sentiment_analysis")
 	cursor = conn.cursor()
 except:
 	print("An exception occurred")
@@ -62,8 +62,7 @@ def add_user():
 	name = request.form.get('uname')
 	email = request.form.get('uemail')
 	password = request.form.get('upassword')
-	cursor.execute("""INSERT INTO `users` (`name`,`email`,`password`) VALUES ('{}','{}','{}')""".format(
-		name, email, password))
+	cursor.execute("""INSERT INTO `users` (`name`,`email`,`password`) VALUES ('{}','{}','{}')""".format(name, email, password))
 	conn.commit()
 	cursor.execute(
 		"""SELECT * from `users` WHERE `email` LIKE '{}'""".format(email))

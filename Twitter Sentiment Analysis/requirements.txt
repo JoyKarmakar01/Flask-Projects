@@ -1,0 +1,8 @@
+Flask 
+mysql-connector-python 
+bcrypt 
+Flask-Session
+tweepy
+matplotlib
+textblob
+NLTK
